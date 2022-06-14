@@ -13,6 +13,7 @@ public class SummativeSums {
 
     }
 
+    //using a "foreach" loop instead of a regular for loop
     public static int arraySum(int[] theArray) {
         int outputSum = 0;
         for (int j : theArray) {

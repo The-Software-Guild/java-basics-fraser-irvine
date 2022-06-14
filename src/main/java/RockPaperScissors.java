@@ -11,14 +11,27 @@ public class RockPaperScissors {
         //initialise the scanner
         Scanner scanner = new Scanner(System.in);
 
+        //start program with a do while loop to control if player wishes to play again
         boolean replay;
         do {
 
             replay = false;
 
-            //get how many rounds
-            System.out.println("How many rounds would you like to play?");
-            int roundCount = scanner.nextInt();
+            //get how many rounds with validation
+            int roundCount;
+            do {
+                System.out.println("How many rounds would you like to play?");
+                if (!scanner.hasNextInt()) {
+                    System.out.println("Error, value is not a number");
+                    scanner.next();
+                }
+                roundCount = scanner.nextInt();
+                if (roundCount <= 0) {
+                    System.out.println("error, cannot have negative or zero rounds, try again");
+                } else {
+                    break;
+                }
+            } while (true);
 
             //store game history
             ArrayList<String> gameHistory = new ArrayList<>();
@@ -30,7 +43,7 @@ public class RockPaperScissors {
 
             for (int i = 1; i <= roundCount; i++) {
 
-                //make separator
+                //make separator and round number
                 System.out.println("=====================");
                 System.out.println("Round: " + i);
 
@@ -42,6 +55,10 @@ public class RockPaperScissors {
                             "2) Paper\n" +
                             "3) Scissors");
 
+                    if (!scanner.hasNextInt()) {
+                        System.out.println("error, value is not a number");
+                        scanner.next();
+                    }
                     int selectedMove = scanner.nextInt();
                     //validate move is within bounds
                     if (selectedMove > 3 || selectedMove < 1) {
@@ -56,6 +73,7 @@ public class RockPaperScissors {
 
                 String result = roundOutcome(playerMove, computerMove);
 
+                //announce the outcome of the round and increment statistics
                 switch (result) {
                     case "Tie":
                         ties++;
@@ -79,6 +97,7 @@ public class RockPaperScissors {
             }
 
             //print game summary
+            System.out.println(gameHistory);
             System.out.println("Player wins: " + playerWins);
             System.out.println("Computer wins: " + computerWins);
             System.out.println("Ties: " + ties);
@@ -90,7 +109,6 @@ public class RockPaperScissors {
             } else {
                 System.out.println("The game has ended in a draw");
             }
-
 
             //validate input
             do {
@@ -111,10 +129,12 @@ public class RockPaperScissors {
 
     }
 
+    //method to output the summary of the round
     public static void printRoundSummary(int playerMove, int computerMove) {
         System.out.println("You played: " + getMoveName(playerMove) + "\nComputer Played: " + getMoveName(computerMove));
     }
 
+    //method to randomly generate computer move
     public static int computerPlay() {
 
         Random rng = new Random();
@@ -123,6 +143,7 @@ public class RockPaperScissors {
 
     }
 
+    //method to easily convert "play ids" to the string counterpart
     public static String getMoveName(int play) {
         switch (play) {
             case 1:
@@ -136,6 +157,7 @@ public class RockPaperScissors {
         }
     }
 
+    //perform rock paper scissors logic
     public static String roundOutcome(int player, int computer) {
         if (player == computer) {
             return "Tie";
