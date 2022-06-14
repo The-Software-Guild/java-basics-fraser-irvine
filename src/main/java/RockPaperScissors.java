@@ -1,5 +1,3 @@
-package src.main.java;
-
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -17,7 +15,7 @@ public class RockPaperScissors {
 
             replay = false;
 
-            //get how many rounds with validation
+            //get how many rounds with input validation
             int roundCount;
             do {
                 System.out.println("How many rounds would you like to play?");
@@ -110,7 +108,7 @@ public class RockPaperScissors {
                 System.out.println("The game has ended in a draw");
             }
 
-            //validate input
+            //check for player replay with input validation
             do {
                 System.out.println("Would you like to play again? [yes/no]");
                 String userInput = scanner.next();
@@ -136,14 +134,12 @@ public class RockPaperScissors {
 
     //method to randomly generate computer move
     public static int computerPlay() {
-
         Random rng = new Random();
-
         return rng.nextInt(2) + 1;
-
     }
 
     //method to easily convert "play ids" to the string counterpart
+    //this method should never give errors as this method gets called with program generated parameters.
     public static String getMoveName(int play) {
         switch (play) {
             case 1:
