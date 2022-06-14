@@ -24,7 +24,7 @@ public class RockPaperScissors {
                     scanner.next();
                 }
                 roundCount = scanner.nextInt();
-                if (roundCount < 0 || roundCount > 10) {
+                if (roundCount <= 0 || roundCount > 10) {
                     System.out.println("error, round count out of bounds 1 - 10 try again");
                 } else {
                     break;
