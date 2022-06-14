@@ -20,12 +20,12 @@ public class RockPaperScissors {
             do {
                 System.out.println("How many rounds would you like to play?");
                 if (!scanner.hasNextInt()) {
-                    System.out.println("Error, value is not a number");
+                    System.out.println("Error, value is not a number, try again");
                     scanner.next();
                 }
                 roundCount = scanner.nextInt();
-                if (roundCount <= 0) {
-                    System.out.println("error, cannot have negative or zero rounds, try again");
+                if (roundCount <= 0 || roundCount > 10) {
+                    System.out.println("error, round count out of bounds 1 - 10 try again");
                 } else {
                     break;
                 }
@@ -54,7 +54,7 @@ public class RockPaperScissors {
                             "3) Scissors");
 
                     if (!scanner.hasNextInt()) {
-                        System.out.println("error, value is not a number");
+                        System.out.println("error, value is not a number, try again");
                         scanner.next();
                     }
                     int selectedMove = scanner.nextInt();
