@@ -144,7 +144,7 @@ public class RockPaperScissors {
     //method to randomly generate computer move
     public static int computerPlay() {
         Random rng = new Random();
-        return rng.nextInt(2) + 1;
+        return rng.nextInt(3) + 1;
     }
 
     //method to easily convert "play ids" to the string counterpart
